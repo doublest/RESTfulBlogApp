@@ -10,10 +10,12 @@ jobs:
   build:
     runs-on: ubuntu-latest
     steps:
-      # Build Docker Image based on Dockerfile in repo
       - uses: actions/checkout@v2
+
+      # Build Docker Image based on Dockerfile in repo
       - name: Build the Docker image
         run: docker build . --file Dockerfile --tag my-image-name:$(date +%s)
+
       # Push to DockerHub
       - name: Push to DockerHub Repo
         uses: opspresso/action-docker@master
@@ -26,6 +28,7 @@ jobs:
           IMAGE_NAME: "doublest/restfulblogapp"
           TAG_NAME: "v0.0.1"
           LATEST: "true"
+
       # Scan the code with sonar Cloud
       - name: Sonar Cloud Scan
         uses: sonarsource/sonarcloud-github-action@master
