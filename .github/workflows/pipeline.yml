@@ -12,6 +12,7 @@ jobs:
     steps:
       # Build Docker Image based on Dockerfile in repo
       - name: Build the Docker image
+      - uses: actions/checkout@v2
         run: docker build . --file Dockerfile --tag my-image-name:$(date +%s)
       # Psuh to DockerHub
       - name: Push to DockerHub Repo
