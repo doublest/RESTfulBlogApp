@@ -25,7 +25,7 @@ jobs:
           TAG_NAME: "v0.0.1"
           LATEST: "true"
 
-      - name: SonarCloud Scan
+      - name: Sonar Cloud Scan
         uses: sonarsource/sonarcloud-github-action@master
         with:
           args: -Dsonar.organization=doublest-github
