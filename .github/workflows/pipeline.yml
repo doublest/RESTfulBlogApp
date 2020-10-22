@@ -7,7 +7,7 @@ on:
     branches: [ main ]
 
 jobs:
-  name: create image
+
   build:
 
     runs-on: ubuntu-latest
