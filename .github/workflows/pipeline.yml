@@ -11,10 +11,10 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       # Build Docker Image based on Dockerfile in repo
-      - name: Build the Docker image
       - uses: actions/checkout@v2
+      - name: Build the Docker image
         run: docker build . --file Dockerfile --tag my-image-name:$(date +%s)
-      # Psuh to DockerHub
+      # Push to DockerHub
       - name: Push to DockerHub Repo
         uses: opspresso/action-docker@master
         with:
