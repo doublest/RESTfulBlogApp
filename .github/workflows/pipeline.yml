@@ -30,7 +30,6 @@ jobs:
         with:
           args: -Dsonar.organization=doublest-github
             -Dsonar.projectKey=doublest_RESTfulBlogApp
-            -Dsonar.verbose=true
-        env:
+          env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
