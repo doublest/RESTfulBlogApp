@@ -16,12 +16,12 @@ jobs:
         run: docker build . --file Dockerfile --tag my-image-name:$(date +%s)
       - name: Push to DockerHub Repo
         uses: opspresso/action-docker@master
-          with:
-            args: --docker
-          env:
-            USERNAME: ${{ secrets.DOCKER_USER }}
-            PASSWORD: ${{ secrets.DOCKER_PASSWORD }}
-            DOCKERFILE: "Dockerfile"
-            IMAGE_NAME: "doublest/blog-app"
-            TAG_NAME: "v0.0.1"
-            LATEST: "true"
+        with:
+          args: --docker
+        env:
+          USERNAME: ${{ secrets.DOCKER_USER }}
+          PASSWORD: ${{ secrets.DOCKER_PASSWORD }}
+          DOCKERFILE: "Dockerfile"
+          IMAGE_NAME: "doublest/blog-app"
+          TAG_NAME: "v0.0.1"
+          LATEST: "true"
