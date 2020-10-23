@@ -7,9 +7,11 @@ on:
     branches: [main]
 
 jobs:
-  build:
+  buildPushContainer:
     runs-on: ubuntu-latest
     steps:
+      #Base checkout action repo
+      - name: check out actions repo
       - uses: actions/checkout@v2
 
       # Build Docker Image based on Dockerfile in repo
