@@ -30,7 +30,10 @@ jobs:
           TAG_NAME: "v0.0.1"
           LATEST: "true"
 
-      # Scan the code with sonar Cloud
+  # Scan the code with sonar Cloud
+  ScanWithSonar:
+    runs-on: ubuntu-latest
+    steps:
       - name: Sonar Cloud Scan
         uses: sonarsource/sonarcloud-github-action@master
         with:
