@@ -16,7 +16,8 @@ jobs:
       - name: Sonar Cloud Scan
         uses: sonarsource/sonarcloud-github-action@master
         with:
-          args: -Dsonar.organization=doublest-github
+          args: |
+            -Dsonar.organization=doublest-github
             -Dsonar.projectKey=doublest_RESTfulBlogApp
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
