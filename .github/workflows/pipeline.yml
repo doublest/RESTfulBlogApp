@@ -2,12 +2,12 @@ name: Pipeline
 
 on:
   push:
-    branches: [main]
+    branches: []
   pull_request:
     branches: [main]
 
 jobs:
-  Build-Stage:
+  Sonar-Scan:
     runs-on: ubuntu-latest
     steps:
       #Base checkout action repo
@@ -24,10 +24,17 @@ jobs:
           SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
 
       # Build Docker Image from Dockerfile
+  Build-Docker-Image:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
       - name: Build the Docker image
         run: docker build . --file Dockerfile --tag my-image-name:$(date +%s)
 
       # Push to DockerHub
+  Push-to-DockerHub:
+    runs-on: ubuntu-latest
+    steps:
       - name: Push to DockerHub Repo
         uses: opspresso/action-docker@master
         with:
