@@ -25,6 +25,7 @@ jobs:
 
       # Build Docker Image from Dockerfile
   Build-Docker-Image:
+    needs: Sonar-Scan
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
@@ -33,6 +34,7 @@ jobs:
 
       # Push to DockerHub
   Push-to-DockerHub:
+    needs: Build-Docker-Image
     runs-on: ubuntu-latest
     steps:
       - name: Push to DockerHub Repo
