@@ -1,5 +1,5 @@
 //include npm modules
-var mongoose = require("mongoose"),
+const mongoose = require("mongoose"),
     bodyParser = require("body-parser"),
     methodOverride = require("method-override"),
     expressSanitizer = require("express-sanitizer"),
@@ -10,7 +10,7 @@ var mongoose = require("mongoose"),
 //app config
 app.set("view engine", "ejs");
 app.use(express.static("public"));
-app.use(bodyParser.urlencoded({ extended: true }));
+app.use(bodyParser.urlencoded({extended: true}));
 app.use(expressSanitizer());
 app.use(methodOverride("_method"));
 
@@ -22,12 +22,12 @@ mongoose.connect('mongodb://localhost:27017/restful_blog_app', {
     .then(() => console.log('Connected to DB!'))
     .catch(error => console.log(error.message));
 
-//definde SCHEMA
-var blogSchema = new mongoose.Schema({
+//define SCHEMA
+const blogSchema = new mongoose.Schema({
     title: String,
     image: String,
     body: String,
-    created: { type: Date, default: Date.now }
+    created: {type: Date, default: Date.now}
 });
 
 //compile to model
@@ -53,7 +53,7 @@ app.get("/blogs", function (req, res) {
             console.log("SOMETHING WENT WRONG");
             console.log(err);
         } else {
-            res.render("index", { blogs: blogs });
+            res.render("index", {blogs: blogs});
         }
     });
 });
@@ -69,7 +69,7 @@ app.post("/blogs", function (req, res) {
     req.body.blog.body = req.sanitize(req.body.blog.body);
     console.log("---------------");
     console.log(req.body);
-    Blog.create(req.body.blog, function (err, newBlog) {
+    Blog.create(req.body.blog, function (err) {
         if (err) {
             console.log("SOMETHING WENT WRONG CREATING A NEW BLOG");
             console.log(err);
@@ -77,7 +77,7 @@ app.post("/blogs", function (req, res) {
         } else {
             //redirect to index
             res.redirect("/blogs");
-        };
+        }
     });
 });
 
@@ -87,7 +87,7 @@ app.get("/blogs/:id", function (req, res) {
         if (err) {
             res.redirect("/blogs");
         } else {
-            res.render("show", { blog: foundBlog })
+            res.render("show", {blog: foundBlog})
         }
     })
 })
@@ -98,7 +98,7 @@ app.get("/blogs/:id/edit", function (req, res) {
         if (err) {
             res.redirect("/blogs");
         } else {
-            res.render("edit", { blog: foundBlog });
+            res.render("edit", {blog: foundBlog});
         }
     });
 })
@@ -106,7 +106,7 @@ app.get("/blogs/:id/edit", function (req, res) {
 //UPDATE ROUTE
 app.put("/blogs/:id", function (req, res) {
     req.body.blog.body = req.sanitize(req.body.blog.body);
-    Blog.findByIdAndUpdate(req.params.id, req.body.blog, function (err, updatedBlog) {
+    Blog.findByIdAndUpdate(req.params.id, req.body.blog, function (err) {
         if (err) {
             res.redirect("/blogs");
         } else {
@@ -127,6 +127,6 @@ app.delete("/blogs/:id", function (req, res) {
 });
 
 //SERVER CHECK
-app.listen(8000, function () {
-    console.log("Blog App hat startet on Port 8000");
+app.listen(7000, function () {
+    console.log("Blog App hat started on Port 7000");
 });
