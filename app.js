@@ -31,7 +31,7 @@ const blogSchema = new mongoose.Schema({
 });
 
 //compile to model
-var Blog = mongoose.model("Blog", blogSchema);
+let Blog = mongoose.model("Blog", blogSchema);
 
 //TEST ENTRY
 /* Blog.create({
