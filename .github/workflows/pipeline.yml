@@ -27,15 +27,16 @@ jobs:
       - name: Build the Docker image
         run: docker build . --file Dockerfile --tag my-image-name:$(date +%s)
 
-      # Push to DockerHub
-      - name: Push to DockerHub Repo
+      # Push to Harbor Demo
+      - name: Docker Build & Push to GitHub Package
         uses: opspresso/action-docker@master
         with:
           args: --docker
         env:
-          USERNAME: ${{ secrets.DOCKER_USER }}
-          PASSWORD: ${{ secrets.DOCKER_PASSWORD }}
+          USERNAME: ${{ secrets.HARBOR_USER }}
+          PASSWORD: ${{ secrets.HARBOR_PASSWORD }}
+          REGISTRY: "demo.goharbor.io"
           DOCKERFILE: "Dockerfile"
-          IMAGE_NAME: "doublest/restfulblogapp"
+          IMAGE_NAME: "stieber-gha/restfulblogapp"
           TAG_NAME: "v0.0.1"
           LATEST: "true"
