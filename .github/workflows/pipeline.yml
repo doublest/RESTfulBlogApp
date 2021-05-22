@@ -28,7 +28,7 @@ jobs:
         run: docker build . --file Dockerfile --tag my-image-name:$(date +%s)
 
       # Push to Harbor Demo
-      - name: Docker Build & Push to GitHub Package
+      - name: Push to Harbor Demo
         uses: opspresso/action-docker@master
         with:
           args: --docker
